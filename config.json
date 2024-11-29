@@ -1,9 +1,5 @@
 {
   "name": "PM2 Bot",
-  "script": "./dist/app.js",
-  "watch": true,
-  "env": {
-    "TOKEN": "",
-    "ADMIN_ID:": ""
-  }
+  "script": "./src/app.js",
+  "watch": true
 }
