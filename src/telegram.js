@@ -4,7 +4,13 @@ import TelegramBot from 'node-telegram-bot-api';
 import { list, restart } from './pm2.js';
 import { pad, timeSince } from './utils.js';
 
-dotenv.config();
+import path from 'path';
+
+const relativePath = path.dirname(fileURLToPath(import.meta.url));
+
+dotenv.config({
+  path: path.resolve(relativePath + '/.env'),
+});
 
 const TOKEN = process.env['TOKEN'];
 const ADMIN = process.env['ADMIN_ID'];
