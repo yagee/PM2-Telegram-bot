@@ -2,6 +2,8 @@ import TelegramBot from 'node-telegram-bot-api';
 import { list, restart } from './pm2';
 import { pad, timeSince } from './utils';
 
+require('dotenv').config();
+
 const token = process.env.TOKEN;
 const admin = process.env.ADMIN_ID;
 const bot = new TelegramBot(token, { polling: true });

@@ -5,6 +5,7 @@
   "main": "./src/app.js",
   "scripts": {
     "build": "babel src --out-dir dist",
+    "start": "node dist/app.js",
     "prettier": "prettier --check --ignore-unknown '**/*'",
     "prettier:fix": "prettier --write --ignore-unknown '**/*'"
   },
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/MrMarble/PM2-Telegram-bot#readme",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "node-telegram-bot-api": "^0.50.0",
     "pm2": "^4.4.0"
   },
