@@ -3,6 +3,7 @@
   "script": "./dist/app.js",
   "watch": true,
   "env": {
-    "TOKEN": ""
+    "TOKEN": "",
+    "ADMIN_ID:": ""
   }
 }

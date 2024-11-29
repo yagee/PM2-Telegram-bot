@@ -3,10 +3,13 @@ import { list, restart } from './pm2';
 import { pad, timeSince } from './utils';
 
 const token = process.env.TOKEN;
+const admin = process.env.ADMIN_ID;
 const bot = new TelegramBot(token, { polling: true });
 
 // List command
 bot.onText(/^\/(list|ls)/, async (msg, _) => {
+  if (msg.chat.id.toString() !== admin) return;
+
   const status = {
     online: '\u{2705}',
     stopping: '\u{1F6AB}',
