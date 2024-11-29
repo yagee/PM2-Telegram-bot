@@ -4,7 +4,9 @@
   "description": "Telegram bot for PM2",
   "main": "./src/app.js",
   "scripts": {
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "prettier": "prettier --check --ignore-unknown '**/*'",
+    "prettier:fix": "prettier --write --ignore-unknown '**/*'"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4"
+    "@babel/preset-env": "^7.10.4",
+    "prettier": "^3.4.1"
   }
 }

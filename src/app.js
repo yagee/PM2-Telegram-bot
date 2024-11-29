@@ -1,5 +1,3 @@
-import { startListening } from "./telegram";
-
-
+import { startListening } from './telegram';
 
 startListening();

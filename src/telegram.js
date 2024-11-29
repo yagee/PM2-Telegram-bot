@@ -1,6 +1,6 @@
-import TelegramBot from "node-telegram-bot-api";
-import { list, restart } from "./pm2";
-import { pad, timeSince } from "./utils";
+import TelegramBot from 'node-telegram-bot-api';
+import { list, restart } from './pm2';
+import { pad, timeSince } from './utils';
 
 const token = process.env.TOKEN;
 const bot = new TelegramBot(token, { polling: true });
@@ -8,11 +8,11 @@ const bot = new TelegramBot(token, { polling: true });
 // List command
 bot.onText(/^\/(list|ls)/, async (msg, _) => {
   const status = {
-    online: "\u{2705}",
-    stopping: "\u{1F6AB}",
-    stopped: "\u{1F6AB}",
-    launching: "\u{267B}",
-    errored: "\u{1F198}",
+    online: '\u{2705}',
+    stopping: '\u{1F6AB}',
+    stopped: '\u{1F6AB}',
+    launching: '\u{267B}',
+    errored: '\u{1F198}',
   };
 
   let { err, response } = await list();
@@ -21,19 +21,19 @@ bot.onText(/^\/(list|ls)/, async (msg, _) => {
   for (const proc of response) {
     body.push(
       [
-        `<b>${proc.name}</b> ${status[proc.pm2_env.status] || ""}<pre>`,
+        `<b>${proc.name}</b> ${status[proc.pm2_env.status] || ''}<pre>`,
         pad`ID: ${proc.pm_id}`,
         pad`MEM: ${Math.round(proc.monit.memory / 1024 / 1024)}Mb`,
         pad`CPU: ${proc.monit.cpu} %`,
         pad`UPTIME: ${timeSince(proc.pm2_env.pm_uptime)}`,
         pad`RESTARTS: ${proc.pm2_env.restart_time}`,
         pad`STATUS: ${proc.pm2_env.status}`,
-        "</pre>",
-      ].join("\n")
+        '</pre>',
+      ].join('\n'),
     );
   }
-  bot.sendMessage(msg.chat.id, body.join("\n"), {
-    parse_mode: "html",
+  bot.sendMessage(msg.chat.id, body.join('\n'), {
+    parse_mode: 'html',
   });
 });
 
@@ -48,8 +48,8 @@ bot.onText(/^\/restart (.+)/, async (msg, matches) => {
       msg.chat.id,
       `Process <i>${proc.name}</i> has been restarted`,
       {
-        parse_mode: "html",
-      }
+        parse_mode: 'html',
+      },
     );
   }
 });

@@ -10,7 +10,7 @@ export function pad(strings, key) {
   const maxLength = 12;
   strings = [...strings];
   let start = strings.splice(0, 1)[0].trim();
-  return ` ${start.padEnd(maxLength)}${key}${strings.pop() || ""}`;
+  return ` ${start.padEnd(maxLength)}${key}${strings.pop() || ''}`;
 }
 
 /**

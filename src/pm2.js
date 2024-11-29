@@ -1,4 +1,4 @@
-const pm2 = require("pm2");
+const pm2 = require('pm2');
 
 const connectAsync = () => {
   return new Promise((resolve, reject) => {
@@ -78,7 +78,7 @@ export async function restart(process) {
     await connectAsync();
     let _test = await describeAsync(process);
     if (_test.pm2_env.pm_exec_path == module.parent.parent.filename) {
-      throw Error("Can not restart PM2 BOT");
+      throw Error('Can not restart PM2 BOT');
     }
     let response = await restartAsync(process);
     return { err: undefined, response };
