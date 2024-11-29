@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "pm2-telegram-bot",
   "version": "1.0.0",
   "description": "Telegram bot for PM2",
@@ -21,7 +22,7 @@
   "homepage": "https://github.com/MrMarble/PM2-Telegram-bot#readme",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "node-telegram-bot-api": "^0.50.0",
+    "node-telegram-bot-api": "^0.64.0",
     "pm2": "^4.4.0"
   },
   "devDependencies": {
