@@ -1,16 +1,23 @@
+import dotenv from 'dotenv';
+
 import TelegramBot from 'node-telegram-bot-api';
-import { list, restart } from './pm2';
-import { pad, timeSince } from './utils';
+import { list, restart } from './pm2.js';
+import { pad, timeSince } from './utils.js';
 
-require('dotenv').config();
+dotenv.config();
 
-const token = process.env.TOKEN;
-const admin = process.env.ADMIN_ID;
-const bot = new TelegramBot(token, { polling: true });
+const TOKEN = process.env['TOKEN'];
+const ADMIN = process.env['ADMIN_ID'];
+
+const bot = new TelegramBot(TOKEN, { polling: true });
+
+bot.onText(/\/start/, async (msg, match) => {
+  console.log('start');
+});
 
 // List command
 bot.onText(/^\/(list|ls)/, async (msg, _) => {
-  if (msg.chat.id.toString() !== admin) return;
+  if (msg.chat.id.toString() !== ADMIN) return;
 
   const status = {
     online: '\u{2705}',

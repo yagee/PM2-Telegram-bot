@@ -1,3 +1,3 @@
-import { startListening } from './telegram';
+import { startListening } from './telegram.js';
 
 startListening();
