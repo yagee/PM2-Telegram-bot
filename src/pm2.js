@@ -1,4 +1,4 @@
-const pm2 = require('pm2');
+import pm2 from 'pm2';
 
 const connectAsync = () => {
   return new Promise((resolve, reject) => {
