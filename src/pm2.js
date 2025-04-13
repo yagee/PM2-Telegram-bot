@@ -77,9 +77,12 @@ export async function restart(process) {
   try {
     await connectAsync();
     let _test = await describeAsync(process);
-    if (_test.pm2_env.pm_exec_path == module.parent.parent.filename) {
+
+    // Check if trying to restart the bot itself
+    if (_test.pm2_env.pm_exec_path.includes('PM2-Telegram-bot/telegram.js')) {
       throw Error('Can not restart PM2 BOT');
     }
+
     let response = await restartAsync(process);
     return { err: undefined, response };
   } catch (err) {
