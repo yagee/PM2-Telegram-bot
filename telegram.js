@@ -14,9 +14,21 @@ dotenv.config({
 });
 
 const TOKEN = process.env['TOKEN'];
-const ADMIN = process.env['ADMIN_ID'];
+// Convert comma-separated admin IDs to an array
+const ADMINS = (process.env['ADMIN_ID'] || '')
+  .split(',')
+  .filter((id) => id.trim());
 
 const bot = new TelegramBot(TOKEN, { polling: true });
+
+/**
+ * Check if a user is an admin
+ * @param {string|number} chatId - The chat ID to check
+ * @returns {boolean} - Whether the user is an admin
+ */
+function isAdmin(chatId) {
+  return ADMINS.includes(chatId.toString());
+}
 
 bot.onText(/\/start/, async (msg, match) => {
   console.log('start');
@@ -24,7 +36,7 @@ bot.onText(/\/start/, async (msg, match) => {
 
 // List command
 bot.onText(/^\/(list|ls)/, async (msg, _) => {
-  if (msg.chat.id.toString() !== ADMIN) return;
+  if (!isAdmin(msg.chat.id)) return;
 
   const status = {
     online: '\u{2705}',
@@ -58,6 +70,8 @@ bot.onText(/^\/(list|ls)/, async (msg, _) => {
 
 // Restart command
 bot.onText(/^\/restart (.+)/, async (msg, matches) => {
+  if (!isAdmin(msg.chat.id)) return;
+
   let process = matches[1];
 
   let { err, response } = await restart(process);
